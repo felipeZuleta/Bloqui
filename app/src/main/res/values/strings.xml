@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">BloquiApp</string>
+    <string name="txt1P1">A diario escuchamos noticias sobre la inseguridad en el país.</string>
+    <string name="txt2P1">Abusos contra mujeres, hombres y niños.</string>
+    <string name="txt3P1">Las cifras en aumento, son parte de nuestra cotidianidad.</string>
+    <string name="txt4P1">Con Bloqui la seguridad hará parte de tu telefono.</string>
+    <string name="acSelTxt">Selecciona las acciones que quieras realizar al activar Bloqui…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="tab_text_1">S1</string>
+    <string name="tab_text_2">S2</string>
+    <string name="tab_text_3">S3</string>
+    <string name="tab_text_4">S4</string>
+    <string name="empezar">EMPEZAR</string>
+    <string name="continuar">CONTINUAR</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="usuario">USUARIO</string>
+    <string name="contrase_a">CONTRASEÑA</string>
+    <string name="edad">EDAD</string>
+    <string name="ciudad">CIUDAD</string>
+    <string name="sexo">SEXO</string>
+    <string name="f">F</string>
+    <string name="m">M</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="mensaje_de_emergencia">Mensaje de emergencia</string>
+    <string name="llamada_de_emergencia">Llamada de emergencia</string>
+    <string name="whatsapp">WHATSAPP</string>
+    <string name="telegram">TELEGRAM</string>
+    <string name="sms">SMS</string>
+    <string name="contacto">CONTACTO</string>
+    <string name="_123">123</string>
+    <string name="policia">POLICIA</string>
+
 </resources>

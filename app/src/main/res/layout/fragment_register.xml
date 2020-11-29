@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterAndSettingsFragments.RegisterFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"
+            android:layout_alignParentTop="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_above="@id/txtUsuario"
+            android:id="@+id/lyNomEdad"
+            android:layout_marginVertical="10dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/edTxtNombre"
+                android:background="@color/appLightYellow"
+                android:layout_weight="7"
+                android:layout_marginEnd="20sp"
+                />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/edTxtEdad"
+                android:background="@color/appGreen"
+                android:layout_weight="3"
+                android:inputType="number"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre"
+            android:id="@+id/txtNombre"
+            android:layout_above="@id/lyNomEdad"
+            android:fontFamily="@font/clear_sans_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/usuario"
+            android:id="@+id/txtUsuario"
+            android:layout_above="@id/edTxtUsuario"
+            android:fontFamily="@font/clear_sans_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contrase_a"
+            android:id="@+id/txtContrasena"
+            android:layout_above="@+id/edTxtContrasena"
+            android:fontFamily="@font/clear_sans_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edad"
+            android:id="@+id/txtEdad"
+            android:layout_above="@id/lyNomEdad"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/clear_sans_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ciudad"
+            android:id="@+id/txtCiudad"
+            android:layout_below="@+id/edTxtContrasena"
+            android:fontFamily="@font/clear_sans_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sexo"
+            android:id="@+id/txtSexo"
+            android:layout_below="@id/edTxtContrasena"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/clear_sans_bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/edTxtContrasena"
+            android:background="@color/appBlue"
+            android:layout_marginVertical="10dp"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_above="@id/txtContrasena"
+            android:id="@+id/edTxtUsuario"
+            android:background="@color/appOrange"
+            android:layout_marginVertical="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/txtCiudad"
+            android:id="@+id/lyCiudS"
+            android:layout_marginVertical="10dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/edTxtCiudad"
+                android:background="@color/appYellow"
+                android:layout_weight="9.8"
+                android:layout_marginEnd="70sp"
+                />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/rdBSexo"
+                android:layout_weight=".2"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/m"
+                    android:buttonTint="@color/appOrange"
+                    android:fontFamily="@font/clear_sans_bold"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f"
+                    android:checked="true"
+                    android:buttonTint="@color/appOrange"
+                    android:fontFamily="@font/clear_sans_bold"/>
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lyCiudS"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="20sp"
+            android:text="@string/siguiente"
+            android:fontFamily="@font/clear_sans_bold"
+            android:backgroundTint="@color/black"/>
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

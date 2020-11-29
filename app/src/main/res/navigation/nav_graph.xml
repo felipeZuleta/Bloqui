@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startInfoFragment4">
+    <fragment
+        android:id="@+id/startInfoFragment4"
+        android:name="com.example.bloquiapp.StartFragment.StartInfoFragment4"
+        android:label="fragment_start_info4"
+        tools:layout="@layout/fragment_start_info4" >
+        <action
+            android:id="@+id/action_startInfoFragment4_to_registerSettingsActivity"
+            app:destination="@id/registerSettingsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/registerSettingsActivity"
+        android:name="com.example.bloquiapp.RegisterSettingsActivity"
+        android:label="activity_register_settings"
+        tools:layout="@layout/activity_register_settings" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_actionsSelectorFragment"
+            app:destination="@id/actionsSelectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionsSelectorFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.ActionsSelectorFragment"
+        android:label="fragment_actions_selector"
+        tools:layout="@layout/fragment_actions_selector" >
+        <action
+            android:id="@+id/action_actionsSelectorFragment_to_whatsAppSetUpFragment"
+            app:destination="@id/whatsAppSetUpFragment" />
+        <action
+            android:id="@+id/action_actionsSelectorFragment_to_telegramSetUpFragment"
+            app:destination="@id/telegramSetUpFragment" />
+        <action
+            android:id="@+id/action_actionsSelectorFragment_to_phoneCallSetUpFragment"
+            app:destination="@id/phoneCallSetUpFragment" />
+        <action
+            android:id="@+id/action_actionsSelectorFragment_to_SMSSetUpFragment"
+            app:destination="@id/SMSSetUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneCallSetUpFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.PhoneCallSetUpFragment"
+        android:label="fragment_phone_call_set_up"
+        tools:layout="@layout/fragment_phone_call_set_up" />
+    <fragment
+        android:id="@+id/telegramSetUpFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.TelegramSetUpFragment"
+        android:label="fragment_telegram_set_up"
+        tools:layout="@layout/fragment_telegram_set_up" >
+        <action
+            android:id="@+id/action_telegramSetUpFragment_to_whatsAppSetUpFragment"
+            app:destination="@id/whatsAppSetUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/whatsAppSetUpFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.WhatsAppSetUpFragment"
+        android:label="fragment_whats_app_set_up"
+        tools:layout="@layout/fragment_whats_app_set_up" >
+        <action
+            android:id="@+id/action_whatsAppSetUpFragment_to_SMSSetUpFragment"
+            app:destination="@id/SMSSetUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SMSSetUpFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.SMSSetUpFragment"
+        android:label="fragment_s_m_s_set_up"
+        tools:layout="@layout/fragment_s_m_s_set_up" >
+        <action
+            android:id="@+id/action_SMSSetUpFragment_to_phoneCallSetUpFragment"
+            app:destination="@id/phoneCallSetUpFragment" />
+    </fragment>
+</navigation>
