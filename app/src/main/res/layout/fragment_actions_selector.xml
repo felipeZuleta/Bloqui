@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/FSmainTxt"
-            android:layout_above="@id/nextBtn"
+            android:layout_above="@id/nextBtnAction"
             android:layout_marginVertical="30dp">
 
             <LinearLayout
@@ -48,6 +48,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/whatsAppSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -95,6 +96,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/telegramSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -142,6 +144,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/smsSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -189,6 +192,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/phoneSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -235,6 +239,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/call123switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -281,6 +286,7 @@
                         android:textSize="15sp"/>
 
                     <Switch
+                        android:id="@+id/callPoliceSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -322,7 +328,7 @@
             android:layout_above="@+id/logo2"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:id="@+id/nextBtn"/>
+            android:id="@+id/nextBtnAction"/>
 
         <ImageView
             android:layout_width="wrap_content"

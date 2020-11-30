@@ -18,4 +18,5 @@
     <color name="appYellowT">#61FFEE93</color>
     <color name="appLightYellowT">#77FCF5C7</color>
     <color name="appGreenT">#68ADF7B6</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

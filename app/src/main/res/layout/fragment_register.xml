@@ -100,7 +100,9 @@
             android:layout_above="@id/txtContrasena"
             android:id="@+id/edTxtUsuario"
             android:background="@color/appOrange"
-            android:layout_marginVertical="10dp" />
+            android:layout_marginVertical="10dp"
+            android:autofillHints="hola"
+            android:inputType="text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,6 +145,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnGoActionsSelector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lyCiudS"

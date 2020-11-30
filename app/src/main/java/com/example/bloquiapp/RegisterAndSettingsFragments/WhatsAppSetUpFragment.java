@@ -1,14 +1,27 @@
 package com.example.bloquiapp.RegisterAndSettingsFragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.bloquiapp.R;
+
+import java.util.Currency;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +29,9 @@ import com.example.bloquiapp.R;
  * create an instance of this fragment.
  */
 public class WhatsAppSetUpFragment extends Fragment {
+
+    private EditText edTxtContact;
+    private Button btnSiguiente;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +77,47 @@ public class WhatsAppSetUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_whats_app_set_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_whats_app_set_up, container, false);
+
+        btnSiguiente = view.findViewById(R.id.btnWhaSiguiente);
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ActionsSelectorFragment.isSMSselected){
+                    Navigation.findNavController(view).navigate(R.id.wha_to_sms);
+                }else if (ActionsSelectorFragment.isPhoneSelected){
+                    Navigation.findNavController(view).navigate(R.id.wha_to_phoneCall);
+                }else {
+                    Navigation.findNavController(view).navigate(R.id.wha_to_tog);
+                }
+            }
+        });
+
+        edTxtContact = view.findViewById(R.id.edTxtContactSelector);
+        edTxtContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+                    startActivityForResult(intent, 111);
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 111 && resultCode == Activity.RESULT_OK){
+            Uri uri = data.getData();
+            Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()){
+                int indiceName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+
+                String nombre = cursor.getString(indiceName);
+
+                edTxtContact.setText(nombre);
+            }
+        }
     }
 }

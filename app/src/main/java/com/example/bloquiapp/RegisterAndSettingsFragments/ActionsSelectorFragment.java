@@ -3,10 +3,14 @@ package com.example.bloquiapp.RegisterAndSettingsFragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.example.bloquiapp.R;
 
@@ -16,6 +20,13 @@ import com.example.bloquiapp.R;
  * create an instance of this fragment.
  */
 public class ActionsSelectorFragment extends Fragment {
+
+    private Button btnNext;
+    private Switch telegramSwitch, whatsappSwitch, smsSwitch, phoneSwitch, call123switch, policeSwitch;
+    protected static boolean isTelelgramSelected = false, isWhatsappSelected= false, isSMSselected = false, isPhoneSelected = false, is123Selected = false, isPoliceSelected = false;
+    private ImageView test;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +72,53 @@ public class ActionsSelectorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actions_selector, container, false);
+        View view = inflater.inflate(R.layout.fragment_actions_selector, container, false);
+
+        telegramSwitch = view.findViewById(R.id.telegramSwitch);
+        whatsappSwitch = view.findViewById(R.id.whatsAppSwitch);
+        smsSwitch = view.findViewById(R.id.smsSwitch);
+        phoneSwitch = view.findViewById(R.id.phoneSwitch);
+        call123switch = view.findViewById(R.id.call123switch);
+        policeSwitch = view.findViewById(R.id.callPoliceSwitch);
+
+
+
+        btnNext = view.findViewById(R.id.nextBtnAction);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isTelelgramSelected = telegramSwitch.isChecked();
+                isWhatsappSelected = whatsappSwitch.isChecked();
+                isSMSselected = smsSwitch.isChecked();
+                isPhoneSelected = phoneSwitch.isChecked();
+                is123Selected  = call123switch.isChecked();
+                isPoliceSelected = policeSwitch.isChecked();
+
+                if (isTelelgramSelected) {
+                    Navigation.findNavController(view).navigate(R.id.act_to_tel);
+                } else if (isWhatsappSelected) {
+                    Navigation.findNavController(view).navigate(R.id.act_to_wha);
+                } else if (isSMSselected) {
+                    Navigation.findNavController(view).navigate(R.id.act_to_sms);
+                } else if (isPhoneSelected) {
+                    Navigation.findNavController(view).navigate(R.id.act_to_phonecall);
+                } else if (is123Selected || isPoliceSelected){
+                    Navigation.findNavController(view).navigate(R.id.act_to_tog);
+                }
+            }
+        });
+
+        /*test = view.findViewById(R.id.logo2);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(isWhatsappSelected);
+                System.out.println(isTelelgramSelected);
+                System.out.println(isPhoneSelected);
+                System.out.println(isSMSselected);
+            }
+        });*/
+
+        return view;
     }
 }

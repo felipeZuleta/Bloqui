@@ -1,5 +1,6 @@
 package com.example.bloquiapp.StartFragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
+import com.example.bloquiapp.RegisterSettingsActivity;
+import com.example.bloquiapp.StartActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +22,8 @@ import com.example.bloquiapp.R;
  * create an instance of this fragment.
  */
 public class StartInfoFragment4 extends Fragment {
+
+    private Button btnGoFirstSettings;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,7 +69,18 @@ public class StartInfoFragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_start_info4, container, false);
+        View view = inflater.inflate(R.layout.fragment_start_info4, container, false);
+
+        btnGoFirstSettings = view.findViewById(R.id.btnGoFirstSettings);
+        btnGoFirstSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RegisterSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
     public interface OnFragmentInteractionListener {
