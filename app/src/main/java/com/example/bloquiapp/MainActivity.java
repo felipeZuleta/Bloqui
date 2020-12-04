@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,52 +12,36 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private View decorView;
-    private Button btnFirstStart;
+    protected static boolean firstRun;
+
+    public static void setSettings(SharedPreferences settings) {
+        MainActivity.settings = settings;
+    }
+
+    public static SharedPreferences getSettings() {
+        return settings;
+    }
+
+    protected static SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        settings = getSharedPreferences("prefs",0);
+        firstRun = settings.getBoolean("firstRun",false);
+        if(!firstRun)//if running for first time
+        {
 
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility == 0)
-                    decorView.setSystemUiVisibility(hideSystemBars());
-            }
-        });
-
-        btnFirstStart = findViewById(R.id.first_start_button);
-        btnFirstStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, StartActivity.class);
-                startActivity(intent); }
-        });
-    }
-
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus){
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            | View.SYSTEM_UI_FLAG_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            Intent i=new Intent(MainActivity.this,StartActivity.class);//Activity to be     launched For the First time
+            startActivity(i);
         }
+        else
+        {
+            Intent a=new Intent(MainActivity.this,MainMenu.class);//Default Activity
+            startActivity(a);
+        }
+        finish();
     }
 
-    private int hideSystemBars(){
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-    }
+
 }

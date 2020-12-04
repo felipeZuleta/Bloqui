@@ -26,13 +26,14 @@
             android:fontFamily="@font/sf_ui_display_regular"
             android:textSize="17sp"
             android:layout_below="@+id/imvst2"
-            android:layout_marginTop="100sp"
+            android:layout_above="@+id/points2"
             android:layout_marginHorizontal="20sp"
             android:textColor="@color/black"
             android:gravity="center"
             />
 
         <ImageView
+            android:id="@+id/points2"
             android:layout_width="wrap_content"
             android:layout_height="10dp"
             android:src="@drawable/points2"

@@ -1,16 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterAndSettingsFragments.ToggleSelectorFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
 
-    </androidx.viewpager.widget.ViewPager>
+        <TextView
+            android:id="@+id/txtInfoTog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtInfoToggles"
+            android:fontFamily="@font/clear_sans_bold"
+            android:textSize="25sp"
+            android:layout_marginBottom="5dp"/>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/actionsViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:layout_above="@+id/buttonsTog"
+            android:layout_below="@id/txtInfoTog"/>
+
+
+        <LinearLayout
+            android:id="@+id/buttonsTog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="@string/atr_s"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnTogSiguiente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/siguiente"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>

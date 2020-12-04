@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background = "@color/appBlueT">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boton Volumen (+)"
+        android:fontFamily="@font/sf_ui_display_regular"
+        android:layout_margin="15dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. de veces"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="@font/sf_ui_display_regular"
+        android:layout_below="@+id/buttonsToggle"
+        android:layout_alignParentEnd="true"/>
+
+
+    <LinearLayout
+        android:id="@+id/buttonsToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="1dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20sp">
+
+        <Button
+            android:layout_width="30sp"
+            android:layout_height="40sp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/baloo_thambi2_extra_bold"
+            android:text="-"
+            android:padding="0dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="2" />
+
+        <Button
+            android:layout_width="30sp"
+            android:layout_height="40sp"
+            android:backgroundTint="@color/black"
+            android:padding="0dp"
+            android:fontFamily="@font/baloo_thambi2_extra_bold"
+            android:text="+" />
+
+    </LinearLayout>
+
+</RelativeLayout>

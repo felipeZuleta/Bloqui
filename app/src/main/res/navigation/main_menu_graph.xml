@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_menu_graph"
+    app:startDestination="@id/misAccionesFragment">
+
+    <fragment
+        android:id="@+id/editarFragment"
+        android:name="com.example.bloquiapp.mainMenuFragments.EditarFragment"
+        android:label="fragment_editar"
+        tools:layout="@layout/fragment_editar" >
+        <action
+            android:id="@+id/action_editarFragment_to_nuevoFragment"
+            app:destination="@id/nuevoFragment" />
+        <action
+            android:id="@+id/action_editarFragment_to_misAccionesFragment"
+            app:destination="@id/misAccionesFragment" />
+        <action
+            android:id="@+id/action_editarFragment_to_phoneCallSetUpFragment2"
+            app:destination="@id/phoneCallSetUpFragment2" />
+        <action
+            android:id="@+id/action_editarFragment_to_SMSSetUpFragment2"
+            app:destination="@id/SMSSetUpFragment2" />
+        <action
+            android:id="@+id/action_editarFragment_to_telegramSetUpFragment2"
+            app:destination="@id/telegramSetUpFragment2" />
+        <action
+            android:id="@+id/action_editarFragment_to_whatsAppSetUpFragment2"
+            app:destination="@id/whatsAppSetUpFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/misAccionesFragment"
+        android:name="com.example.bloquiapp.mainMenuFragments.MisAccionesFragment"
+        android:label="fragment_mis_acciones"
+        tools:layout="@layout/fragment_mis_acciones" >
+        <action
+            android:id="@+id/action_misAccionesFragment_to_nuevoFragment"
+            app:destination="@id/nuevoFragment" />
+        <action
+            android:id="@+id/action_misAccionesFragment_to_editarFragment"
+            app:destination="@id/editarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nuevoFragment"
+        android:name="com.example.bloquiapp.mainMenuFragments.NuevoFragment"
+        android:label="fragment_nuevo"
+        tools:layout="@layout/fragment_nuevo" >
+        <action
+            android:id="@+id/action_nuevoFragment_to_editarFragment"
+            app:destination="@id/editarFragment" />
+        <action
+            android:id="@+id/action_nuevoFragment_to_misAccionesFragment"
+            app:destination="@id/misAccionesFragment" />
+        <action
+            android:id="@+id/action_nuevoFragment_to_whatsAppSetUpFragment2"
+            app:destination="@id/whatsAppSetUpFragment2" />
+        <action
+            android:id="@+id/action_nuevoFragment_to_telegramSetUpFragment2"
+            app:destination="@id/telegramSetUpFragment2" />
+        <action
+            android:id="@+id/action_nuevoFragment_to_SMSSetUpFragment2"
+            app:destination="@id/SMSSetUpFragment2" />
+        <action
+            android:id="@+id/action_nuevoFragment_to_phoneCallSetUpFragment2"
+            app:destination="@id/phoneCallSetUpFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/whatsAppSetUpFragment2"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.WhatsAppSetUpFragment"
+        android:label="fragment_s_m_s_set_up"
+        tools:layout="@layout/fragment_whats_app_set_up" />
+    <fragment
+        android:id="@+id/phoneCallSetUpFragment2"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.PhoneCallSetUpFragment"
+        android:label="PhoneCallSetUpFragment"
+        tools:layout="@layout/fragment_phone_call_set_up"/>
+    <fragment
+        android:id="@+id/SMSSetUpFragment2"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.SMSSetUpFragment"
+        android:label="SMSSetUpFragment"
+        tools:layout="@layout/fragment_s_m_s_set_up"/>
+    <fragment
+        android:id="@+id/telegramSetUpFragment2"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.TelegramSetUpFragment"
+        android:label="TelegramSetUpFragment"
+        tools:layout="@layout/fragment_telegram_set_up"/>
+</navigation>

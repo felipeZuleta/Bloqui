@@ -26,7 +26,6 @@
             android:fontFamily="@font/sf_ui_display_regular"
             android:textSize="17sp"
             android:layout_below="@+id/imvst4"
-            android:layout_marginTop="50sp"
             android:layout_marginHorizontal="30sp"
             android:textColor="@color/black"
             android:gravity="center"

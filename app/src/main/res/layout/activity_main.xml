@@ -8,24 +8,4 @@
     android:padding="80dp"
     >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/logo"
-        android:layout_centerInParent="true"
-        android:id="@+id/logo"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true"
-        android:text="@string/empezar"
-        android:fontFamily="@font/clear_sans_bold"
-        android:backgroundTint="@color/appGreen"
-        android:id="@+id/first_start_button"/>
-
-
-
 </RelativeLayout>

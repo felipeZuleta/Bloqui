@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BloquiApp</string>
+    <string name="app_name">Bloqui</string>
     <string name="txt1P1">A diario escuchamos noticias sobre la inseguridad en el país.</string>
     <string name="txt2P1">Abusos contra mujeres, hombres y niños.</string>
     <string name="txt3P1">Las cifras en aumento, son parte de nuestra cotidianidad.</string>
@@ -36,6 +36,10 @@
     <string name="enviar_ubicaci_n">ENVIAR UBICACIÓN</string>
     <string name="abrir_app_y_grabar_audio">ABRIR APP Y GRABAR AUDIO</string>
     <string name="atr_s">Atrás</string>
+    <string name="txtInfoToggles">Elije cómo quieres activar tus acciones.</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

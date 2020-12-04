@@ -20,7 +20,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mensaje_de_emergencia"
+                android:text="@string/llamada_de_emergencia"
                 android:id="@+id/msg1"
                 android:fontFamily="@font/clear_sans_bold"
                 android:textColor="@color/black"
