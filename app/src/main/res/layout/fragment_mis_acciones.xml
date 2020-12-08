@@ -14,8 +14,30 @@
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"/>
 
+    <TextView
+        android:id="@+id/mis_acciones_main_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estas son tus acciones..."
+        android:fontFamily="@font/clear_sans_bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mis_acciones_main_text"
+        android:layout_above="@id/bottonBar"
+        android:layout_margin="20dp">
 
+        <LinearLayout
+            android:id="@+id/placing_actions_in_mis_acciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/bottonBar"
@@ -26,6 +48,7 @@
         android:background="@color/black">
 
         <Button
+            android:id="@+id/btnMisAccionesToEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appBlue"
@@ -41,7 +64,7 @@
             android:textColor="@color/black"/>
 
         <Button
-            android:id="@+id/btnNewAction"
+            android:id="@+id/btnMisAccionesToNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appOrange"

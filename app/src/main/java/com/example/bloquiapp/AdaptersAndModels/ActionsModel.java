@@ -5,14 +5,28 @@ import android.widget.LinearLayout;
 
 public class ActionsModel {
 
-    String title;
-    int icon, background;
+    private String title;
 
-    public ActionsModel(String title, int icon, int background) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
+    private int icon, background;
+
+
+
+    public ActionsModel(String title, int icon, int background, String type) {
         this.title = title;
         this.icon = icon;
         this.background = background;
+        this.type = type;
     }
+
 
     public String getTitle() {
         return title;

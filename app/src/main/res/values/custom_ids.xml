@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="change_telegram_contact" type="id"/>
+    <item name="change_whats_app_contact" type="id"/>
+    <item name="change_sms_contact" type="id"/>
+    <item name="change_phone_contact" type="id"/>
+</resources>

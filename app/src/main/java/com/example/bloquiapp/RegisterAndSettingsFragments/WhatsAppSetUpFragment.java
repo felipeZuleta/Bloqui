@@ -2,7 +2,9 @@ package com.example.bloquiapp.RegisterAndSettingsFragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.bloquiapp.Logic.Usuario;
+import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
 import java.util.Currency;
@@ -31,7 +35,8 @@ import java.util.Objects;
 public class WhatsAppSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente;
+    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    public static String whereWppCameFrom = "register";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,12 +88,34 @@ public class WhatsAppSetUpFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActionsSelectorFragment.isSMSselected){
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
                     Navigation.findNavController(view).navigate(R.id.wha_to_sms);
-                }else if (ActionsSelectorFragment.isPhoneSelected){
+                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
                     Navigation.findNavController(view).navigate(R.id.wha_to_phoneCall);
                 }else {
                     Navigation.findNavController(view).navigate(R.id.wha_to_tog);
+                }
+            }
+        });
+
+        btnSiguienteEditar = view.findViewById(R.id.btnWhaSiguienteEditar);
+        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_editarFragment);
+            }
+        });
+
+        btnSiguienteNuevo = view.findViewById(R.id.btnWhaSiguienteNuevo);
+        btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
+                    Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_SMSSetUpFragment2);
+                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                    Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_phoneCallSetUpFragment2);
+                }else {
+                    Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_toggleSelectorFragment2);
                 }
             }
         });
@@ -102,6 +129,24 @@ public class WhatsAppSetUpFragment extends Fragment {
                     startActivityForResult(intent, 111);
             }
         });
+
+        switch (whereWppCameFrom) {
+            case "register":
+                btnSiguiente.setVisibility(View.VISIBLE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "nuevo":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.VISIBLE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "editar":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.VISIBLE);
+                break;
+        }
         return view;
     }
 

@@ -1,5 +1,7 @@
 package com.example.bloquiapp.RegisterAndSettingsFragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.bloquiapp.Logic.Usuario;
+import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
 /**
@@ -23,11 +27,7 @@ public class ActionsSelectorFragment extends Fragment {
 
     private Button btnNext;
     private Switch telegramSwitch, whatsappSwitch, smsSwitch, phoneSwitch, call123switch, policeSwitch;
-    protected static boolean isTelelgramSelected = false, isWhatsappSelected= false, isSMSselected = false, isPhoneSelected = false, is123Selected = false, isPoliceSelected = false;
     private ImageView test;
-
-
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -87,26 +87,25 @@ public class ActionsSelectorFragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isTelelgramSelected = telegramSwitch.isChecked();
-                isWhatsappSelected = whatsappSwitch.isChecked();
-                isSMSselected = smsSwitch.isChecked();
-                isPhoneSelected = phoneSwitch.isChecked();
-                is123Selected  = call123switch.isChecked();
-                isPoliceSelected = policeSwitch.isChecked();
-
-                if (isTelelgramSelected) {
+                saveData();
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false)) {
+                    TelegramSetUpFragment.whereTelCameFrom = "register";
                     Navigation.findNavController(view).navigate(R.id.act_to_tel);
-                } else if (isWhatsappSelected) {
+                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)) {
+                    WhatsAppSetUpFragment.whereWppCameFrom = "register";
                     Navigation.findNavController(view).navigate(R.id.act_to_wha);
-                } else if (isSMSselected) {
+                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)) {
+                    SMSSetUpFragment.whereSMSCameFrom = "register";
                     Navigation.findNavController(view).navigate(R.id.act_to_sms);
-                } else if (isPhoneSelected) {
+                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)) {
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = "register";
                     Navigation.findNavController(view).navigate(R.id.act_to_phonecall);
-                } else if (is123Selected || isPoliceSelected){
+                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false) || MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false)){
                     Navigation.findNavController(view).navigate(R.id.act_to_tog);
                 }
             }
         });
+
 
         /*test = view.findViewById(R.id.logo2);
         test.setOnClickListener(new View.OnClickListener() {
@@ -121,4 +120,18 @@ public class ActionsSelectorFragment extends Fragment {
 
         return view;
     }
+
+    public void saveData(){
+
+        MainActivity.editor.putBoolean(MainActivity.WHATSAPP_SWITCH, whatsappSwitch.isChecked());
+        MainActivity.editor.putBoolean(MainActivity.TELEGRAM_SWITCH, telegramSwitch.isChecked());
+        MainActivity.editor.putBoolean(MainActivity.SMS_SWITCH, smsSwitch.isChecked());
+        MainActivity.editor.putBoolean(MainActivity.PHONE_SWITCH, phoneSwitch.isChecked());
+        MainActivity.editor.putBoolean(MainActivity.P123_SWITCH, call123switch.isChecked());
+        MainActivity.editor.putBoolean(MainActivity.POLICE_SWITCH, policeSwitch.isChecked());
+
+        MainActivity.editor.apply();
+
+    }
+
 }

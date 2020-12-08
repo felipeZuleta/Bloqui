@@ -14,10 +14,17 @@
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"/>
 
-
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/editarViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:layout_below="@id/imageView"
+        android:layout_above="@id/bottomBar"
+        />
 
     <RelativeLayout
-        android:id="@+id/bottonBar"
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -32,6 +39,7 @@
             android:textColor="@color/black"/>
 
         <Button
+            android:id="@+id/btnEditarToMisAcciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appGreen"
@@ -40,7 +48,7 @@
             android:textColor="@color/black"/>
 
         <Button
-            android:id="@+id/btnNewAction"
+            android:id="@+id/btnEditarToNuevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appOrange"

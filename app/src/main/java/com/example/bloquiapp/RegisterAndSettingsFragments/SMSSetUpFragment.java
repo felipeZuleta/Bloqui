@@ -1,7 +1,9 @@
 package com.example.bloquiapp.RegisterAndSettingsFragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.bloquiapp.Logic.Usuario;
+import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
 /**
@@ -27,7 +31,9 @@ import com.example.bloquiapp.R;
 public class SMSSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente;
+    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    public static String whereSMSCameFrom = "register";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,10 +85,30 @@ public class SMSSetUpFragment extends Fragment {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActionsSelectorFragment.isPhoneSelected){
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
                     Navigation.findNavController(view).navigate(R.id.sms_to_phone_call);
                 }else {
                     Navigation.findNavController(view).navigate(R.id.sms_to_tog);
+                }
+            }
+        });
+
+        btnSiguienteEditar = view.findViewById(R.id.btnSMSSiguienteEditar);
+        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_editarFragment);
+            }
+        });
+
+        btnSiguienteNuevo = view.findViewById(R.id.btnSMSSiguienteNuevo);
+        btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                    Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_phoneCallSetUpFragment2);
+                }else {
+                    Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_toggleSelectorFragment2);
                 }
             }
         });
@@ -96,6 +122,24 @@ public class SMSSetUpFragment extends Fragment {
                 startActivityForResult(intent, 111);
             }
         });
+
+        switch (whereSMSCameFrom) {
+            case "register":
+                btnSiguiente.setVisibility(View.VISIBLE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "nuevo":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.VISIBLE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "editar":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.VISIBLE);
+                break;
+        }
         return view;
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class ViewPageAdapter extends PagerAdapter {
         ActionsModel model = modelArrayList.get(position);
         String title = model.getTitle();
         int icon = model.getIcon();
+        String type = model.getType();
 
         toggleActionIcon.setImageResource(icon);
         titleAction.setText(title);

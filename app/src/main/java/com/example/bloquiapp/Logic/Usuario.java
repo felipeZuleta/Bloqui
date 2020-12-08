@@ -1,25 +1,24 @@
 package com.example.bloquiapp.Logic;
 
+import android.content.SharedPreferences;
+import android.view.View;
 
-public class Usuario {
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.SharedPreferencesCompat;
+
+import com.example.bloquiapp.AdaptersAndModels.ViewPageAdapter;
+
+public class Usuario{
 
 
     String nombre,ubicacion,usuario,contraseña;
     int edad;
-    boolean mWhatsapp,mTelegram,mMsm,llamada;
-
-    boolean Telegram, Whatsapp;
-
-    public Usuario(String nombre, String ubicacion, String usuario, String contraseña, int edad, boolean telegram,
-                   boolean whatsapp) {
-        super();
+    public Usuario(String nombre, String ubicacion, String usuario, String contraseña, int edad) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.edad = edad;
-        Telegram = telegram;
-        Whatsapp = whatsapp;
     }
 
     public String getNombre() {
@@ -61,23 +60,6 @@ public class Usuario {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-
-    public boolean isTelegram() {
-        return Telegram;
-    }
-
-    public void setTelegram(boolean telegram) {
-        Telegram = telegram;
-    }
-
-    public boolean isWhatsapp() {
-        return Whatsapp;
-    }
-
-    public void setWhatsapp(boolean whatsapp) {
-        Whatsapp = whatsapp;
-    }
-
 
 
 }

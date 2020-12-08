@@ -95,4 +95,5 @@
         android:name="com.example.bloquiapp.RegisterAndSettingsFragments.ToggleSelectorFragment"
         android:label="fragment_toggle_selector"
         tools:layout="@layout/fragment_toggle_selector" />
+
 </navigation>

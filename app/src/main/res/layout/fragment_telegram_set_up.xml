@@ -139,29 +139,30 @@
                     android:layout_marginStart="20sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="50dp"
-                android:layout_marginTop="40dp">
-
-                <Button
-                    android:id="@+id/btnTelAtras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:text="@string/atr_s"
-                    android:textColor="@color/black"/>
-
                 <Button
                     android:id="@+id/btnTelSiguiente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
+                    android:layout_marginVertical="20dp"
                     android:text="@string/siguiente"/>
 
-            </LinearLayout>
+                <Button
+                    android:id="@+id/btnTelSiguienteNuevo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:layout_marginVertical="20dp"
+                    android:visibility="gone"
+                    android:text="SIGUIENTE2"/>
+                <Button
+                    android:id="@+id/btnTelSiguienteEditar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:layout_marginVertical="20dp"
+                    android:visibility="gone"
+                    android:text="SIGUIENTE3"/>
 
         </LinearLayout>
         <ImageView

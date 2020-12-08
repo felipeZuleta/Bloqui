@@ -14,7 +14,325 @@
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/acSelTxt"
+        android:fontFamily="@font/clear_sans_bold"
+        android:textSize="30sp"
+        android:id="@+id/FSmainTxt"
+        android:layout_below="@id/imageView"
+        android:paddingHorizontal="30dp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/FSmainTxt"
+        android:layout_above="@id/btnUpdate"
+        android:layout_marginVertical="30dp"
+        android:layout_marginHorizontal="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appGreenT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mensaje_de_emergencia"
+                    android:id="@+id/msg1"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/whatsAppSwitchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg1"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_green"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/whatsapp"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/clear_sans_bold"
+                        android:layout_marginEnd="5dp"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/whatsapp_logo"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appBlueT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mensaje_de_emergencia"
+                    android:id="@+id/msg2"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/telegramSwitchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg2"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_blue"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/telegram"
+                        android:fontFamily="@font/clear_sans_bold"
+                        android:layout_marginEnd="5dp"/>
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/telegram_logo"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appOrangeT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mensaje_de_emergencia"
+                    android:id="@+id/msg3"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/smsSwitchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg3"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_orange"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/sms"
+                        android:fontFamily="@font/clear_sans_bold"
+                        android:layout_marginEnd="5dp"/>
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/sms_logo"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appYellowT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/llamada_de_emergencia"
+                    android:id="@+id/msg4"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/phoneSwitchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg4"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_yellow"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contacto"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/clear_sans_bold"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/call_icon"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appGreenT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/llamada_de_emergencia"
+                    android:id="@+id/msg5"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/call123switchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg5"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_green"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_123"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/clear_sans_bold"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/call_icon"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                android:background="@color/appBlueT">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/llamada_de_emergencia"
+                    android:id="@+id/msg6"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <Switch
+                    android:id="@+id/callPoliceSwitchN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/msg6"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_outline_blue"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/policia"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/clear_sans_bold"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/call_icon"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACTUALIZAR"
+        android:layout_above="@id/bottonBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"/>
 
     <RelativeLayout
         android:id="@+id/bottonBar"
@@ -25,6 +343,7 @@
         android:background="@color/black">
 
         <Button
+            android:id="@+id/btnNuevoToEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appBlue"
@@ -32,6 +351,7 @@
             android:textColor="@color/black"/>
 
         <Button
+            android:id="@+id/btnNuevoToMisAcciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/appGreen"

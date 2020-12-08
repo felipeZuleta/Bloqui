@@ -1,6 +1,8 @@
 package com.example.bloquiapp.RegisterAndSettingsFragments;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,7 +19,9 @@ import android.widget.Button;
 
 import com.example.bloquiapp.AdaptersAndModels.ActionsModel;
 import com.example.bloquiapp.AdaptersAndModels.ViewPageAdapter;
+import com.example.bloquiapp.Logic.Usuario;
 import com.example.bloquiapp.MainActivity;
+import com.example.bloquiapp.MainMenu;
 import com.example.bloquiapp.R;
 
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ public class ToggleSelectorFragment extends Fragment {
     private ArrayList<ActionsModel> actionsModelArrayList;
     private ViewPageAdapter myAdapter;
     private Button btnTogSiguiente;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,6 +96,8 @@ public class ToggleSelectorFragment extends Fragment {
                 SharedPreferences.Editor editor= MainActivity.getSettings().edit();
                 editor.putBoolean("firstRun",true);
                 editor.commit();
+                Intent intent = new Intent(getActivity(), MainMenu.class);
+                startActivity(intent);
             }
         });
 
@@ -100,12 +107,12 @@ public class ToggleSelectorFragment extends Fragment {
     private void loadCards(){
         actionsModelArrayList = new ArrayList<>();
 
-        if (ActionsSelectorFragment.isTelelgramSelected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.telegram_logo,R.color.appBlueT)); }
-        if (ActionsSelectorFragment.isWhatsappSelected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.whatsapp_logo,R.color.appGreenT)); }
-        if (ActionsSelectorFragment.isSMSselected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.sms_logo,R.color.appOrangeT)); }
-        if (ActionsSelectorFragment.isPoliceSelected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Policia)",R.drawable.call_icon,R.color.appBlueT)); }
-        if (ActionsSelectorFragment.is123Selected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (123)",R.drawable.call_icon,R.color.appGreenT)); }
-        if (ActionsSelectorFragment.isPhoneSelected){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Contacto)",R.drawable.call_icon,R.color.appYellowT)); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.telegram_logo,R.color.appBlueT,"telegram")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.whatsapp_logo,R.color.appGreenT,"whatsapp")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.sms_logo,R.color.appOrangeT,"sms")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Policia)",R.drawable.call_icon,R.color.appBlueT,"def")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (123)",R.drawable.call_icon,R.color.appGreenT,"def")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Contacto)",R.drawable.call_icon,R.color.appYellowT,"phone")); }
 
         myAdapter = new ViewPageAdapter(getActivity(), actionsModelArrayList);
 

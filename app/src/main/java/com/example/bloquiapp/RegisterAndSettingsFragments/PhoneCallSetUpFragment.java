@@ -27,7 +27,8 @@ import com.example.bloquiapp.R;
 public class PhoneCallSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente;
+    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    public static String wherePhoneCameFrom = "register";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +84,22 @@ public class PhoneCallSetUpFragment extends Fragment {
             }
         });
 
+        btnSiguienteEditar = view.findViewById(R.id.btnCallSiguienteEditar);
+        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_editarFragment);
+            }
+        });
+
+        btnSiguienteNuevo = view.findViewById(R.id.btnCallSiguienteNuevo);
+        btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_toggleSelectorFragment2);
+            }
+        });
+
         edTxtContact = view.findViewById(R.id.edTxtContactSelectorCall);
         edTxtContact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +109,24 @@ public class PhoneCallSetUpFragment extends Fragment {
                 startActivityForResult(intent, 111);
             }
         });
+
+        switch (wherePhoneCameFrom) {
+            case "register":
+                btnSiguiente.setVisibility(View.VISIBLE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "nuevo":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.VISIBLE);
+                btnSiguienteEditar.setVisibility(View.GONE);
+                break;
+            case "editar":
+                btnSiguiente.setVisibility(View.GONE);
+                btnSiguienteNuevo.setVisibility(View.GONE);
+                btnSiguienteEditar.setVisibility(View.VISIBLE);
+                break;
+        }
         return view;
     }
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/dirtWhite"
+        android:layout_margin="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mensaje_de_emergencia"
+                android:id="@+id/action_in_main_title"
+                android:fontFamily="@font/clear_sans_bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_below="@id/action_in_main_icon"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/action_in_main_icon"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/telegram_logo"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/actions_in_main_contacto_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONTACTO:"
+                android:layout_below="@id/action_in_main_title"
+                android:padding="6dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="7dp"/>
+            <TextView
+                android:id="@+id/actions_in_main_contacto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Felipe"
+                android:textColor="@color/black"
+                android:fontFamily="@font/clear_sans_bold"
+                android:layout_below="@id/action_in_main_title"
+                android:layout_toEndOf="@id/actions_in_main_contacto_title"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                android:background="@drawable/round_outline_blue"
+                android:layout_marginTop="7dp"/>
+            <Button
+                android:id="@+id/actions_in_main_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACTIVAR"
+                android:layout_below="@id/action_in_main_title"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="10dp"/>
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
