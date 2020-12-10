@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     protected static boolean firstRun;
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected static SharedPreferences settings;
 
     public static final String SHARED_PREFS = "sharedPrefs", WHATSAPP_SWITCH = "whatsAppSwitch", TELEGRAM_SWITCH = "telegramSwitch", SMS_SWITCH = "smsSwitch", PHONE_SWITCH = "phoneSwitch", P123_SWITCH = "p123Switch", POLICE_SWITCH = "policeSwitch";
+    public static final String WPP_AC = "whatsAppAlreadyConfigured",TEL_AC = "telegramAlreadyConfigured",SMS_AC = "smsAlreadyConfigured",PCON_AC = "contactCallAlreadyConfigured";
+    public static final String TELEGRAM_TOGGLES = "telToggles",WHATSAPP_TOGGLES = "wppToggles",SMS_TOGGLES = "smsToggles",PHONECALL_TOGGLES = "phoneCallToggles",POLICE_TOGGLES = "policeToggles",CALL123_TOGGLES = "call123Toggles";
+
 
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(a);
         }
         finish();
+
     }
 
 

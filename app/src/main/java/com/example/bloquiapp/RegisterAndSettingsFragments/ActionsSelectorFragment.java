@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.example.bloquiapp.Logic.Usuario;
+
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 

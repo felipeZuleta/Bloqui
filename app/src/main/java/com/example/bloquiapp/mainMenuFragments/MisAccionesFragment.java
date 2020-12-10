@@ -1,7 +1,6 @@
 package com.example.bloquiapp.mainMenuFragments;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -16,11 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.bloquiapp.AdaptersAndModels.ViewPageAdapter;
-import com.example.bloquiapp.Logic.Usuario;
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
-import com.example.bloquiapp.RegisterAndSettingsFragments.ActionsSelectorFragment;
 
 /**
  * A simple {@link Fragment} subclass.

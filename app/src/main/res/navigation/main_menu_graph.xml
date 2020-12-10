@@ -17,17 +17,8 @@
             android:id="@+id/action_editarFragment_to_misAccionesFragment"
             app:destination="@id/misAccionesFragment" />
         <action
-            android:id="@+id/action_editarFragment_to_telegramSetUpFragment2"
-            app:destination="@id/telegramSetUpFragment" />
-        <action
-            android:id="@+id/action_editarFragment_to_whatsAppSetUpFragment2"
-            app:destination="@id/whatsAppSetUpFragment" />
-        <action
-            android:id="@+id/action_editarFragment_to_SMSSetUpFragment2"
-            app:destination="@id/SMSSetUpFragment" />
-        <action
-            android:id="@+id/action_editarFragment_to_phoneCallSetUpFragment2"
-            app:destination="@id/phoneCallSetUpFragment" />
+            android:id="@+id/action_editarFragment_to_togglesMenuFragment2"
+            app:destination="@id/togglesMenuFragment2" />
     </fragment>
     <fragment
         android:id="@+id/misAccionesFragment"
@@ -71,9 +62,6 @@
         android:label="PhoneCallSetUpFragment"
         tools:layout="@layout/fragment_phone_call_set_up">
         <action
-            android:id="@+id/action_phoneCallSetUpFragment2_to_toggleSelectorFragment2"
-            app:destination="@id/toggleSelectorFragment" />
-        <action
             android:id="@+id/action_phoneCallSetUpFragment2_to_editarFragment"
             app:destination="@id/editarFragment" />
     </fragment>
@@ -82,9 +70,6 @@
         android:name="com.example.bloquiapp.RegisterAndSettingsFragments.SMSSetUpFragment"
         android:label="SMSSetUpFragment"
         tools:layout="@layout/fragment_s_m_s_set_up">
-        <action
-            android:id="@+id/action_SMSSetUpFragment2_to_toggleSelectorFragment2"
-            app:destination="@id/toggleSelectorFragment" />
         <action
             android:id="@+id/action_SMSSetUpFragment2_to_phoneCallSetUpFragment2"
             app:destination="@id/phoneCallSetUpFragment" />
@@ -107,9 +92,6 @@
             android:id="@+id/action_telegramSetUpFragment2_to_SMSSetUpFragment2"
             app:destination="@id/SMSSetUpFragment" />
         <action
-            android:id="@+id/action_telegramSetUpFragment2_to_toggleSelectorFragment2"
-            app:destination="@id/toggleSelectorFragment" />
-        <action
             android:id="@+id/action_telegramSetUpFragment2_to_editarFragment"
             app:destination="@id/editarFragment" />
     </fragment>
@@ -125,16 +107,17 @@
             android:id="@+id/action_whatsAppSetUpFragment2_to_SMSSetUpFragment2"
             app:destination="@id/SMSSetUpFragment" />
         <action
-            android:id="@+id/action_whatsAppSetUpFragment2_to_toggleSelectorFragment2"
-            app:destination="@id/toggleSelectorFragment" />
-        <action
             android:id="@+id/action_whatsAppSetUpFragment2_to_editarFragment"
             app:destination="@id/editarFragment" />
     </fragment>
     <fragment
-        android:id="@+id/toggleSelectorFragment"
-        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.ToggleSelectorFragment"
-        android:label="fragment_toggle_selector"
-        tools:layout="@layout/fragment_toggle_selector" />
+        android:id="@+id/togglesMenuFragment2"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.TogglesMenuFragment"
+        android:label="fragment_toggles_menu"
+        tools:layout="@layout/fragment_toggles_menu" >
+        <action
+            android:id="@+id/action_togglesMenuFragment2_to_editarFragment"
+            app:destination="@id/editarFragment" />
+    </fragment>
 
 </navigation>

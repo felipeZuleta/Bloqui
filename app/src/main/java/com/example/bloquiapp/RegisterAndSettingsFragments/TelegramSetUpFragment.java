@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.bloquiapp.Logic.Usuario;
+
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
@@ -33,7 +33,7 @@ public class TelegramSetUpFragment extends Fragment {
 
     private ImageButton selectContact;
     private EditText edTxtContact;
-    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    private Button btnSiguiente, btnSiguienteNuevo;
     private int backId;
     public static String whereTelCameFrom = "register";
 
@@ -89,38 +89,39 @@ public class TelegramSetUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){
+                    WhatsAppSetUpFragment.whereWppCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.tel_to_wha);
                 } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
+                    SMSSetUpFragment.whereSMSCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.tel_to_sms);
                 }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.tel_to_phoneCall);
                 }else {
                     Navigation.findNavController(view).navigate(R.id.tel_to_tog);
                 }
+                alreadyConfigured();
             }
         });
 
-        btnSiguienteEditar = view.findViewById(R.id.btnTelSiguienteEditar);
-        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_editarFragment);
-            }
-        });
 
         btnSiguienteNuevo = view.findViewById(R.id.btnTelSiguienteNuevo);
         btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.WPP_AC,false))){
+                    WhatsAppSetUpFragment.whereWppCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_whatsAppSetUpFragment2);
-                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
+                } else if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_AC,false))){
+                    SMSSetUpFragment.whereSMSCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_SMSSetUpFragment2);
-                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.PCON_AC,false))){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereTelCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_phoneCallSetUpFragment2);
                 }else {
-                    Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_toggleSelectorFragment2);
+                    Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_editarFragment);
                 }
+                alreadyConfigured();
             }
         });
 
@@ -138,17 +139,10 @@ public class TelegramSetUpFragment extends Fragment {
             case "register":
                 btnSiguiente.setVisibility(View.VISIBLE);
                 btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.GONE);
                 break;
             case "nuevo":
                 btnSiguiente.setVisibility(View.GONE);
                 btnSiguienteNuevo.setVisibility(View.VISIBLE);
-                btnSiguienteEditar.setVisibility(View.GONE);
-                break;
-            case "editar":
-                btnSiguiente.setVisibility(View.GONE);
-                btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -169,5 +163,10 @@ public class TelegramSetUpFragment extends Fragment {
                 edTxtContact.setText(nombre);
             }
         }
+    }
+
+    public void alreadyConfigured(){
+        MainActivity.editor.putBoolean(MainActivity.TEL_AC,true);
+        MainActivity.editor.apply();
     }
 }

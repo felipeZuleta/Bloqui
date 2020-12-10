@@ -27,8 +27,6 @@ public class NuevoFragment extends Fragment {
 
     private Button toEditar, toMisAcciones, updateActions;
     private Switch telegramSwitch, whatsappSwitch, smsSwitch, phoneSwitch, call123switch, policeSwitch;
-    // Indicates if actions are already configured (AC)
-    private Boolean telegramAC=false, whatsappAC=false, smsAC=false, phoneAC=false, call123AC=false, policeAC=false;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,19 +104,19 @@ public class NuevoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 updateSwitches();
-                if(MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false) && (!telegramAC)){
+                if(MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false) && (!MainActivity.sharedPreferences.getBoolean(MainActivity.TEL_AC,false))){
                     TelegramSetUpFragment.whereTelCameFrom = "nuevo";
                     Navigation.findNavController(view).navigate(R.id.action_nuevoFragment_to_telegramSetUpFragment2);
-                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false) && (!whatsappAC)){
+                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false) && (!MainActivity.sharedPreferences.getBoolean(MainActivity.WPP_AC,false))){
                     WhatsAppSetUpFragment.whereWppCameFrom = "nuevo";
                     Navigation.findNavController(view).navigate(R.id.action_nuevoFragment_to_whatsAppSetUpFragment2);
-                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false) && (!smsAC)){
+                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false) && (!MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_AC,false))){
                     SMSSetUpFragment.whereSMSCameFrom = "nuevo";
                     Navigation.findNavController(view).navigate(R.id.action_nuevoFragment_to_SMSSetUpFragment2);
-                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false) && (!phoneAC)){
+                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false) && (!MainActivity.sharedPreferences.getBoolean(MainActivity.PCON_AC,false))){
                     PhoneCallSetUpFragment.wherePhoneCameFrom = "nuevo";
                     Navigation.findNavController(view).navigate(R.id.action_nuevoFragment_to_phoneCallSetUpFragment2);
-                }else if((MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false) && (!policeAC)) || (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false) && (!call123AC))){
+                }else if(MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false) || (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false))){
                     Navigation.findNavController(view).navigate(R.id.action_nuevoFragment_to_misAccionesFragment);
                 }
             }
@@ -130,27 +128,21 @@ public class NuevoFragment extends Fragment {
     public void loadSwitches(){
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){
             whatsappSwitch.setChecked(true);
-            whatsappAC = true;
         }
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false)){
             telegramSwitch.setChecked(true);
-            telegramAC = true;
         }
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
             smsSwitch.setChecked(true);
-            smsAC = true;
         }
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
             phoneSwitch.setChecked(true);
-            phoneAC = true;
         }
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false)){
             policeSwitch.setChecked(true);
-            policeAC = true;
         }
         if(MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false)){
             call123switch.setChecked(true);
-            call123AC = true;
         }
     }
 
@@ -162,6 +154,28 @@ public class NuevoFragment extends Fragment {
         MainActivity.editor.putBoolean(MainActivity.P123_SWITCH, call123switch.isChecked());
         MainActivity.editor.putBoolean(MainActivity.POLICE_SWITCH, policeSwitch.isChecked());
 
+        if(!whatsappSwitch.isChecked() && MainActivity.sharedPreferences.getBoolean(MainActivity.WPP_AC,false)){
+            MainActivity.editor.putBoolean(MainActivity.WPP_AC,false);
+            MainActivity.editor.putString(MainActivity.WHATSAPP_TOGGLES,"");
+        }
+        if(!telegramSwitch.isChecked() && MainActivity.sharedPreferences.getBoolean(MainActivity.TEL_AC,false)){
+            MainActivity.editor.putBoolean(MainActivity.TEL_AC,false);
+            MainActivity.editor.putString(MainActivity.TELEGRAM_TOGGLES,"");
+        }
+        if(!smsSwitch.isChecked() && MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_AC,false)){
+            MainActivity.editor.putBoolean(MainActivity.SMS_AC,false);
+            MainActivity.editor.putString(MainActivity.SMS_TOGGLES,"");
+        }
+        if(!phoneSwitch.isChecked() && MainActivity.sharedPreferences.getBoolean(MainActivity.PCON_AC,false)){
+            MainActivity.editor.putBoolean(MainActivity.PCON_AC,false);
+            MainActivity.editor.putString(MainActivity.PHONECALL_TOGGLES,"");
+        }
+        if(!call123switch.isChecked()){
+            MainActivity.editor.putString(MainActivity.CALL123_TOGGLES,"");
+        }
+        if (!policeSwitch.isChecked()){
+            MainActivity.editor.putString(MainActivity.POLICE_TOGGLES,"");
+        }
         MainActivity.editor.apply();
     }
 }

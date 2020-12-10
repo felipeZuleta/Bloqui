@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.bloquiapp.Logic.Usuario;
+
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
@@ -31,7 +31,7 @@ import com.example.bloquiapp.R;
 public class SMSSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    private Button btnSiguiente, btnSiguienteNuevo;
     public static String whereSMSCameFrom = "register";
 
 
@@ -86,30 +86,28 @@ public class SMSSetUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereSMSCameFrom;
                     Navigation.findNavController(view).navigate(R.id.sms_to_phone_call);
                 }else {
                     Navigation.findNavController(view).navigate(R.id.sms_to_tog);
                 }
+                alreadyConfigured();
             }
         });
 
-        btnSiguienteEditar = view.findViewById(R.id.btnSMSSiguienteEditar);
-        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_editarFragment);
-            }
-        });
+
 
         btnSiguienteNuevo = view.findViewById(R.id.btnSMSSiguienteNuevo);
         btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.PCON_AC,false))){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereSMSCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_phoneCallSetUpFragment2);
                 }else {
-                    Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_toggleSelectorFragment2);
+                    Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_editarFragment);
                 }
+                alreadyConfigured();
             }
         });
 
@@ -127,17 +125,10 @@ public class SMSSetUpFragment extends Fragment {
             case "register":
                 btnSiguiente.setVisibility(View.VISIBLE);
                 btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.GONE);
                 break;
             case "nuevo":
                 btnSiguiente.setVisibility(View.GONE);
                 btnSiguienteNuevo.setVisibility(View.VISIBLE);
-                btnSiguienteEditar.setVisibility(View.GONE);
-                break;
-            case "editar":
-                btnSiguiente.setVisibility(View.GONE);
-                btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.VISIBLE);
                 break;
         }
         return view;
@@ -157,5 +148,10 @@ public class SMSSetUpFragment extends Fragment {
                 edTxtContact.setText(nombre);
             }
         }
+    }
+
+    public void alreadyConfigured(){
+        MainActivity.editor.putBoolean(MainActivity.SMS_AC,true);
+        MainActivity.editor.apply();
     }
 }

@@ -40,6 +40,13 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="boton_volumen_up">Boton Volumen (+)</string>
+    <string name="boton_volumen_dowm">Boton Volumen (-)</string>
+    <string name="llamada_a_contacto">Llamada a Contacto</string>
+    <string name="llamada_a_policia">Llamada a Policia</string>
+    <string name="llamada_al_123">Llamada al 123</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="cargar">CARGAR</string>
 
 
 </resources>

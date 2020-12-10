@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_margin="20dp"/>
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/editarViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

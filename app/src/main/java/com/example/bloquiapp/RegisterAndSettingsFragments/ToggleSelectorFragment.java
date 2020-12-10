@@ -1,28 +1,31 @@
 package com.example.bloquiapp.RegisterAndSettingsFragments;
 
-import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.bloquiapp.AdaptersAndModels.ActionsModel;
-import com.example.bloquiapp.AdaptersAndModels.ViewPageAdapter;
-import com.example.bloquiapp.Logic.Usuario;
+import com.example.bloquiapp.AdaptersAndModels.CustomPagerAdapter;
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.MainMenu;
 import com.example.bloquiapp.R;
+import com.example.bloquiapp.ToggleSequences.Call123ToggleFragment;
+import com.example.bloquiapp.ToggleSequences.PhoneCallToggleFragment;
+import com.example.bloquiapp.ToggleSequences.PoliceToggleFragment;
+import com.example.bloquiapp.ToggleSequences.SMSToggleFragment;
+import com.example.bloquiapp.ToggleSequences.TelegramToggleFragment;
+import com.example.bloquiapp.ToggleSequences.WhatsAppToggleFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +37,10 @@ import java.util.List;
  */
 public class ToggleSelectorFragment extends Fragment {
 
-    private ViewPager viewPager;
-    private ArrayList<ActionsModel> actionsModelArrayList;
-    private ViewPageAdapter myAdapter;
+    private ViewPager2 viewPager;
+    private CustomPagerAdapter myAdapter;
     private Button btnTogSiguiente;
+    private FloatingActionButton flTelegram, flWhatsApp, flSMS, flPhoneCall, flPolice, fl123;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -101,21 +104,23 @@ public class ToggleSelectorFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
     private void loadCards(){
-        actionsModelArrayList = new ArrayList<>();
+        List<Fragment> list = new ArrayList<>();
 
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.telegram_logo,R.color.appBlueT,"telegram")); }
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.whatsapp_logo,R.color.appGreenT,"whatsapp")); }
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.mensaje_de_emergencia),R.drawable.sms_logo,R.color.appOrangeT,"sms")); }
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Policia)",R.drawable.call_icon,R.color.appBlueT,"def")); }
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (123)",R.drawable.call_icon,R.color.appGreenT,"def")); }
-        if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){ actionsModelArrayList.add(new ActionsModel(getString(R.string.llamada_de_emergencia)+ " (Contacto)",R.drawable.call_icon,R.color.appYellowT,"phone")); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.TELEGRAM_SWITCH,false)){list.add(new TelegramToggleFragment()); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.WHATSAPP_SWITCH,false)){ list.add(new WhatsAppToggleFragment()); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){ list.add(new SMSToggleFragment()); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.POLICE_SWITCH,false)){ list.add(new PoliceToggleFragment()); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.P123_SWITCH,false)){ list.add(new Call123ToggleFragment()); }
+        if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){ list.add(new PhoneCallToggleFragment()); }
 
-        myAdapter = new ViewPageAdapter(getActivity(), actionsModelArrayList);
+        myAdapter = new CustomPagerAdapter(getActivity(), list);
 
         viewPager.setAdapter(myAdapter);
     }
+
 }

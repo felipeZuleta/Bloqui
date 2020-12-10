@@ -5,9 +5,10 @@
     android:background = "@color/appBlueT">
 
     <TextView
+        android:id="@+id/toggles_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Boton Volumen (+)"
+        android:text="@string/boton_volumen_dowm"
         android:fontFamily="@font/sf_ui_display_regular"
         android:layout_margin="15dp"
         android:textSize="18sp"/>
@@ -32,6 +33,7 @@
         android:paddingHorizontal="20sp">
 
         <Button
+            android:id="@+id/default_less_button"
             android:layout_width="30sp"
             android:layout_height="40sp"
             android:backgroundTint="@color/black"
@@ -40,12 +42,14 @@
             android:padding="0dp"/>
 
         <TextView
+            android:id="@+id/default_times_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="2" />
 
         <Button
+            android:id="@+id/default_plus_button"
             android:layout_width="30sp"
             android:layout_height="40sp"
             android:backgroundTint="@color/black"

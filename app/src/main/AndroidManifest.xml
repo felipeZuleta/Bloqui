@@ -12,12 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloquiApp">
         <activity android:name=".MainMenu" />
-        <activity android:name=".RegisterSettingsActivity" android:theme="@style/Theme.BloquiApp.NoActionBar" />
+        <activity
+            android:name=".RegisterSettingsActivity"
+            android:theme="@style/Theme.BloquiApp.NoActionBar" />
         <activity
             android:name=".StartActivity"
             android:label="@string/title_activity_start"
             android:theme="@style/Theme.BloquiApp.NoActionBar" />
-        <activity android:name=".MainActivity" android:theme="@style/Theme.BloquiApp.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.BloquiApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

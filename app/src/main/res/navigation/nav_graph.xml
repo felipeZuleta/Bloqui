@@ -94,6 +94,19 @@
         android:id="@+id/toggleSelectorFragment"
         android:name="com.example.bloquiapp.RegisterAndSettingsFragments.ToggleSelectorFragment"
         android:label="fragment_toggle_selector"
-        tools:layout="@layout/fragment_toggle_selector" />
+        tools:layout="@layout/fragment_toggle_selector" >
+        <action
+            android:id="@+id/action_toggleSelectorFragment_to_togglesMenuFragment"
+            app:destination="@id/togglesMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/togglesMenuFragment"
+        android:name="com.example.bloquiapp.RegisterAndSettingsFragments.TogglesMenuFragment"
+        android:label="fragment_toggles_menu"
+        tools:layout="@layout/fragment_toggles_menu" >
+        <action
+            android:id="@+id/action_togglesMenuFragment_to_toggleSelectorFragment"
+            app:destination="@id/toggleSelectorFragment" />
+    </fragment>
 
 </navigation>

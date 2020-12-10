@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.bloquiapp.Logic.Usuario;
+
 import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
@@ -35,7 +35,7 @@ import java.util.Objects;
 public class WhatsAppSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    private Button btnSiguiente, btnSiguienteNuevo;
     public static String whereWppCameFrom = "register";
 
     // TODO: Rename parameter arguments, choose names that match
@@ -89,34 +89,33 @@ public class WhatsAppSetUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
+                    SMSSetUpFragment.whereSMSCameFrom = whereWppCameFrom;
                     Navigation.findNavController(view).navigate(R.id.wha_to_sms);
                 }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereWppCameFrom;
                     Navigation.findNavController(view).navigate(R.id.wha_to_phoneCall);
                 }else {
                     Navigation.findNavController(view).navigate(R.id.wha_to_tog);
                 }
+                alreadyConfigured();
             }
         });
 
-        btnSiguienteEditar = view.findViewById(R.id.btnWhaSiguienteEditar);
-        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_editarFragment);
-            }
-        });
 
         btnSiguienteNuevo = view.findViewById(R.id.btnWhaSiguienteNuevo);
         btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)){
+                if (MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.SMS_AC,false))){
+                    SMSSetUpFragment.whereSMSCameFrom = whereWppCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_SMSSetUpFragment2);
-                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)){
+                }else if (MainActivity.sharedPreferences.getBoolean(MainActivity.PHONE_SWITCH,false)&& (!MainActivity.sharedPreferences.getBoolean(MainActivity.PCON_AC,false))){
+                    PhoneCallSetUpFragment.wherePhoneCameFrom = whereWppCameFrom;
                     Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_phoneCallSetUpFragment2);
                 }else {
-                    Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_toggleSelectorFragment2);
+                    Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_editarFragment);
                 }
+                alreadyConfigured();
             }
         });
 
@@ -134,17 +133,10 @@ public class WhatsAppSetUpFragment extends Fragment {
             case "register":
                 btnSiguiente.setVisibility(View.VISIBLE);
                 btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.GONE);
                 break;
             case "nuevo":
                 btnSiguiente.setVisibility(View.GONE);
                 btnSiguienteNuevo.setVisibility(View.VISIBLE);
-                btnSiguienteEditar.setVisibility(View.GONE);
-                break;
-            case "editar":
-                btnSiguiente.setVisibility(View.GONE);
-                btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.VISIBLE);
                 break;
         }
         return view;
@@ -164,5 +156,10 @@ public class WhatsAppSetUpFragment extends Fragment {
                 edTxtContact.setText(nombre);
             }
         }
+    }
+
+    public void alreadyConfigured(){
+        MainActivity.editor.putBoolean(MainActivity.WPP_AC,true);
+        MainActivity.editor.apply();
     }
 }

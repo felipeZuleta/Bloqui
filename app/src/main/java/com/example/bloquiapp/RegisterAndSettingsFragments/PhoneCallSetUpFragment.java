@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.bloquiapp.MainActivity;
 import com.example.bloquiapp.R;
 
 /**
@@ -27,7 +28,7 @@ import com.example.bloquiapp.R;
 public class PhoneCallSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
-    private Button btnSiguiente, btnSiguienteEditar, btnSiguienteNuevo;
+    private Button btnSiguiente, btnSiguienteNuevo;
     public static String wherePhoneCameFrom = "register";
 
     // TODO: Rename parameter arguments, choose names that match
@@ -81,22 +82,18 @@ public class PhoneCallSetUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.phoneCall_to_tog);
+                alreadyConfigured();
             }
         });
 
-        btnSiguienteEditar = view.findViewById(R.id.btnCallSiguienteEditar);
-        btnSiguienteEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_editarFragment);
-            }
-        });
+
 
         btnSiguienteNuevo = view.findViewById(R.id.btnCallSiguienteNuevo);
         btnSiguienteNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_toggleSelectorFragment2);
+                Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_editarFragment);
+                alreadyConfigured();
             }
         });
 
@@ -114,17 +111,10 @@ public class PhoneCallSetUpFragment extends Fragment {
             case "register":
                 btnSiguiente.setVisibility(View.VISIBLE);
                 btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.GONE);
                 break;
             case "nuevo":
                 btnSiguiente.setVisibility(View.GONE);
                 btnSiguienteNuevo.setVisibility(View.VISIBLE);
-                btnSiguienteEditar.setVisibility(View.GONE);
-                break;
-            case "editar":
-                btnSiguiente.setVisibility(View.GONE);
-                btnSiguienteNuevo.setVisibility(View.GONE);
-                btnSiguienteEditar.setVisibility(View.VISIBLE);
                 break;
         }
         return view;
@@ -144,5 +134,9 @@ public class PhoneCallSetUpFragment extends Fragment {
                 edTxtContact.setText(nombre);
             }
         }
+    }
+    public void alreadyConfigured(){
+        MainActivity.editor.putBoolean(MainActivity.PCON_AC,true);
+        MainActivity.editor.apply();
     }
 }
