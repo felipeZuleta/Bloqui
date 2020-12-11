@@ -61,31 +61,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contacto"
+                android:text="@string/usuario_de_telegram"
                 android:fontFamily="@font/sf_ui_display_regular"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:layout_weight="9"
-                    android:id="@+id/edTxtContactSelectorTel"
+                    android:id="@+id/contactoTelegram"
                     android:background="@drawable/round_outline_blue"/>
-                <ImageButton
-                    android:id="@+id/contactsBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/contact"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"/>
-            </LinearLayout>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,11 +82,12 @@
                 android:layout_marginTop="30dp"/>
 
             <EditText
+                android:id="@+id/mensajeTelegram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="6"
                 android:background="@drawable/round_outline_blue"
-                android:hint="@string/defaultMsg"
+                android:text="@string/defaultMsg"
                 android:fontFamily="@font/sf_ui_display_regular"
                 android:gravity="top"
                 android:padding="10dp"

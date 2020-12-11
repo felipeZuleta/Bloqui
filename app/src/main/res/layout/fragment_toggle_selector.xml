@@ -22,7 +22,7 @@
             android:layout_marginBottom="5dp"/>
 
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/actionsViewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.bloquiapp.R;
 
@@ -18,6 +20,9 @@ import com.example.bloquiapp.R;
  * create an instance of this fragment.
  */
 public class RegisterFragment extends Fragment {
+
+    TextView nombre, edad, usuario, contraseña, ciudad;
+    RadioGroup sexo;
 
     private Button btnGoActionSelector;
 
@@ -71,7 +76,7 @@ public class RegisterFragment extends Fragment {
         btnGoActionSelector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.reg_to_act);
+
             }
         });
 

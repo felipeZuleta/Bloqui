@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -18,9 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.example.bloquiapp.MainActivity;
+import com.example.bloquiapp.MainMenu;
 import com.example.bloquiapp.R;
 
 /**
@@ -30,10 +33,11 @@ import com.example.bloquiapp.R;
  */
 public class SMSSetUpFragment extends Fragment {
 
-    private EditText edTxtContact;
-    private Button btnSiguiente, btnSiguienteNuevo;
-    public static String whereSMSCameFrom = "register";
-
+    private EditText mensaje;
+    private Button btnSiguiente, btnSiguienteNuevo, selectContact;
+    private TextView tvcontacto;
+    public static String whereSMSCameFrom = "register", numero;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,6 +84,9 @@ public class SMSSetUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_s_m_s_set_up, container, false);
+        mensaje = view.findViewById(R.id.mensajeSMS);
+        tvcontacto = view.findViewById(R.id.tvSMSContacto);
+        context = container.getContext();
 
         btnSiguiente = view.findViewById(R.id.btnSMSsiguiente);
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +99,7 @@ public class SMSSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.sms_to_tog);
                 }
                 alreadyConfigured();
+                setContactAndMessage(numero,mensaje.getText().toString());
             }
         });
 
@@ -108,16 +116,18 @@ public class SMSSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_SMSSetUpFragment2_to_editarFragment);
                 }
                 alreadyConfigured();
+                setContactAndMessage(numero,mensaje.getText().toString());
             }
         });
 
-        edTxtContact = view.findViewById(R.id.edTxtContactSelectorSMS);
-        edTxtContact.setOnClickListener(new View.OnClickListener() {
+        selectContact = view.findViewById(R.id.btnContactSelectorSMS);
+        selectContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
                 startActivityForResult(intent, 111);
+                System.out.println("por aqui");
             }
         });
 
@@ -139,19 +149,28 @@ public class SMSSetUpFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 111 && resultCode == Activity.RESULT_OK){
             Uri uri = data.getData();
-            Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+            Cursor cursor = MainActivity.getContextOfApp().getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()){
                 int indiceName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-
+                int indiceNumber = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                numero = cursor.getString(indiceNumber);
                 String nombre = cursor.getString(indiceName);
-
-                edTxtContact.setText(nombre);
+                System.out.println("hola");
+                System.out.println(nombre);
+                tvcontacto.setText(nombre);
             }
+            assert cursor != null;
+            cursor.close();
         }
     }
 
     public void alreadyConfigured(){
         MainActivity.editor.putBoolean(MainActivity.SMS_AC,true);
+        MainActivity.editor.apply();
+    }
+    public void setContactAndMessage(String contact, String msg){
+        MainActivity.editor.putString(MainActivity.SMS_CONTACT,contact);
+        MainActivity.editor.putString(MainActivity.SMS_MESSAGE,msg);
         MainActivity.editor.apply();
     }
 }

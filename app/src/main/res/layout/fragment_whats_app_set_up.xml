@@ -67,7 +67,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:inputType="textPersonName"
+                android:inputType="none"
                 android:drawableEnd="@drawable/contact"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
@@ -83,11 +83,12 @@
                 android:layout_marginTop="30dp"/>
 
             <EditText
+                android:id="@+id/mensajeWhatsapp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="6"
                 android:background="@drawable/round_outline_green"
-                android:hint="@string/defaultMsg"
+                android:text="@string/defaultMsg"
                 android:fontFamily="@font/sf_ui_display_regular"
                 android:gravity="top"
                 android:padding="10dp"

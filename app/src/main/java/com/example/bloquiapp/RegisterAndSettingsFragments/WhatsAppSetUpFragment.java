@@ -34,9 +34,9 @@ import java.util.Objects;
  */
 public class WhatsAppSetUpFragment extends Fragment {
 
-    private EditText edTxtContact;
+    private EditText edTxtContact, message;
     private Button btnSiguiente, btnSiguienteNuevo;
-    public static String whereWppCameFrom = "register";
+    public static String whereWppCameFrom = "register",numero;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +83,7 @@ public class WhatsAppSetUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_whats_app_set_up, container, false);
+        message = view.findViewById(R.id.mensajeWhatsapp);
 
         btnSiguiente = view.findViewById(R.id.btnWhaSiguiente);
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +99,7 @@ public class WhatsAppSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.wha_to_tog);
                 }
                 alreadyConfigured();
+                setContactAndMessage(numero,message.getText().toString());
             }
         });
 
@@ -116,6 +118,7 @@ public class WhatsAppSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_whatsAppSetUpFragment2_to_editarFragment);
                 }
                 alreadyConfigured();
+                setContactAndMessage(numero,message.getText().toString());
             }
         });
 
@@ -150,7 +153,8 @@ public class WhatsAppSetUpFragment extends Fragment {
             Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()){
                 int indiceName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-
+                int indiceNumber = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                numero = cursor.getString(indiceNumber);
                 String nombre = cursor.getString(indiceName);
 
                 edTxtContact.setText(nombre);
@@ -160,6 +164,11 @@ public class WhatsAppSetUpFragment extends Fragment {
 
     public void alreadyConfigured(){
         MainActivity.editor.putBoolean(MainActivity.WPP_AC,true);
+        MainActivity.editor.apply();
+    }
+    public void setContactAndMessage(String contact, String msg){
+        MainActivity.editor.putString(MainActivity.WHATSAPP_CONTACT,contact);
+        MainActivity.editor.putString(MainActivity.WHATSAPP_MESSAGE,msg);
         MainActivity.editor.apply();
     }
 }

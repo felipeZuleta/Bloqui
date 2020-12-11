@@ -29,14 +29,11 @@ public class PhoneCallSetUpFragment extends Fragment {
 
     private EditText edTxtContact;
     private Button btnSiguiente, btnSiguienteNuevo;
-    public static String wherePhoneCameFrom = "register";
+    public static String wherePhoneCameFrom = "register", numero;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -44,15 +41,6 @@ public class PhoneCallSetUpFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PhoneCallSetUpFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static PhoneCallSetUpFragment newInstance(String param1, String param2) {
         PhoneCallSetUpFragment fragment = new PhoneCallSetUpFragment();
         Bundle args = new Bundle();
@@ -83,6 +71,7 @@ public class PhoneCallSetUpFragment extends Fragment {
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.phoneCall_to_tog);
                 alreadyConfigured();
+                setContact(numero);
             }
         });
 
@@ -94,6 +83,7 @@ public class PhoneCallSetUpFragment extends Fragment {
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_phoneCallSetUpFragment2_to_editarFragment);
                 alreadyConfigured();
+                setContact(numero);
             }
         });
 
@@ -128,15 +118,19 @@ public class PhoneCallSetUpFragment extends Fragment {
             Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()){
                 int indiceName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-
+                int indiceNumber = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String nombre = cursor.getString(indiceName);
-
+                numero = cursor.getString(indiceNumber);
                 edTxtContact.setText(nombre);
             }
         }
     }
     public void alreadyConfigured(){
         MainActivity.editor.putBoolean(MainActivity.PCON_AC,true);
+        MainActivity.editor.apply();
+    }
+    public void setContact(String contact){
+        MainActivity.editor.putString(MainActivity.PHONECALL_CONTACT,contact);
         MainActivity.editor.apply();
     }
 }

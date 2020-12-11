@@ -31,8 +31,7 @@ import com.example.bloquiapp.R;
  */
 public class TelegramSetUpFragment extends Fragment {
 
-    private ImageButton selectContact;
-    private EditText edTxtContact;
+    private EditText edTxtContact, mensaje;
     private Button btnSiguiente, btnSiguienteNuevo;
     private int backId;
     public static String whereTelCameFrom = "register";
@@ -83,6 +82,8 @@ public class TelegramSetUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_telegram_set_up, container, false);
+        edTxtContact = view.findViewById(R.id.contactoTelegram);
+        mensaje = view.findViewById(R.id.mensajeTelegram);
 
         btnSiguiente = view.findViewById(R.id.btnTelSiguiente);
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +102,7 @@ public class TelegramSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.tel_to_tog);
                 }
                 alreadyConfigured();
+                setContactAndMessage(edTxtContact.getText().toString(),mensaje.getText().toString());
             }
         });
 
@@ -122,18 +124,11 @@ public class TelegramSetUpFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_telegramSetUpFragment2_to_editarFragment);
                 }
                 alreadyConfigured();
+                setContactAndMessage(edTxtContact.getText().toString(),mensaje.getText().toString());
             }
         });
 
-        selectContact = view.findViewById(R.id.contactsBtn);
-        selectContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
-                startActivityForResult(intent, 111);
-            }
-        });
+
 
         switch (whereTelCameFrom) {
             case "register":
@@ -146,27 +141,18 @@ public class TelegramSetUpFragment extends Fragment {
                 break;
         }
 
+
+
         return view;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 111 && resultCode == Activity.RESULT_OK){
-            Uri uri = data.getData();
-            Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
-            if (cursor != null && cursor.moveToFirst()){
-                int indiceName = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-
-                String nombre = cursor.getString(indiceName);
-
-                edTxtContact.setText(nombre);
-            }
-        }
     }
 
     public void alreadyConfigured(){
         MainActivity.editor.putBoolean(MainActivity.TEL_AC,true);
+        MainActivity.editor.apply();
+    }
+    public void setContactAndMessage(String user, String msg){
+        MainActivity.editor.putString(MainActivity.TELEGRAM_CONTACT,user);
+        MainActivity.editor.putString(MainActivity.TELEGRAM_MESSAGE,msg);
         MainActivity.editor.apply();
     }
 }

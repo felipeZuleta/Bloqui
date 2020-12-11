@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bloquiapp.MainActivity;
+import com.example.bloquiapp.MyIntentService;
 import com.example.bloquiapp.R;
 
 /**
@@ -99,10 +100,22 @@ public class MisAccionesFragment extends Fragment {
             TextView telTitulo = telView.findViewById(R.id.action_in_main_title);
             TextView telContacto = telView.findViewById(R.id.actions_in_main_contacto);
             ImageView telIcon = telView.findViewById(R.id.action_in_main_icon);
+            Button activar = telView.findViewById(R.id.actions_in_main_button);
 
             telTitulo.setText(getString(R.string.mensaje_de_emergencia));
             telIcon.setImageResource(R.drawable.telegram_logo);
             telContacto.setBackground(getResources().getDrawable(R.drawable.round_outline_blue));
+
+            String contacto = MainActivity.sharedPreferences.getString(MainActivity.TELEGRAM_CONTACT,"");
+            String mensaje = MainActivity.sharedPreferences.getString(MainActivity.TELEGRAM_MESSAGE,"");
+
+            telContacto.setText(contacto);
+            activar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyIntentService.startActionTLG(getContext(),mensaje,contacto);
+                }
+            });
 
             placingActions.addView(telView);
         }
@@ -111,6 +124,18 @@ public class MisAccionesFragment extends Fragment {
             TextView wppTitulo = wppView.findViewById(R.id.action_in_main_title);
             TextView wppContacto = wppView.findViewById(R.id.actions_in_main_contacto);
             ImageView wppIcon = wppView.findViewById(R.id.action_in_main_icon);
+            Button activar = wppView.findViewById(R.id.actions_in_main_button);
+
+            String contacto = MainActivity.sharedPreferences.getString(MainActivity.WHATSAPP_CONTACT,"");
+            String mensaje = MainActivity.sharedPreferences.getString(MainActivity.WHATSAPP_MESSAGE,"");
+
+            wppContacto.setText(contacto);
+            activar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyIntentService.startActionWPP(getContext(),mensaje,contacto);
+                }
+            });
 
             wppTitulo.setText(getString(R.string.mensaje_de_emergencia));
             wppIcon.setImageResource(R.drawable.whatsapp_logo);
@@ -123,10 +148,22 @@ public class MisAccionesFragment extends Fragment {
             TextView smsTitulo = smsView.findViewById(R.id.action_in_main_title);
             TextView smsContacto = smsView.findViewById(R.id.actions_in_main_contacto);
             ImageView smsIcon = smsView.findViewById(R.id.action_in_main_icon);
+            Button activar = smsView.findViewById(R.id.actions_in_main_button);
 
             smsTitulo.setText(getString(R.string.mensaje_de_emergencia));
             smsIcon.setImageResource(R.drawable.sms_logo);
             smsContacto.setBackground(getResources().getDrawable(R.drawable.round_outline_yellow));
+
+            String contacto = MainActivity.sharedPreferences.getString(MainActivity.SMS_CONTACT,"");
+            String mensaje = MainActivity.sharedPreferences.getString(MainActivity.SMS_MESSAGE,"");
+
+            smsContacto.setText(contacto);
+            activar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyIntentService.startActionSMS(getContext(),mensaje,contacto);
+                }
+            });
 
             placingActions.addView(smsView);
         }
@@ -135,10 +172,21 @@ public class MisAccionesFragment extends Fragment {
             TextView phTitulo = phView.findViewById(R.id.action_in_main_title);
             TextView phContacto = phView.findViewById(R.id.actions_in_main_contacto);
             ImageView phIcon = phView.findViewById(R.id.action_in_main_icon);
+            Button activar = phView.findViewById(R.id.actions_in_main_button);
 
             phTitulo.setText(getString(R.string.llamada_de_emergencia));
             phIcon.setImageResource(R.drawable.call_icon);
             phContacto.setBackground(getResources().getDrawable(R.drawable.round_outline_orange));
+
+            String contacto = MainActivity.sharedPreferences.getString(MainActivity.PHONECALL_CONTACT,"");
+
+            phContacto.setText(contacto);
+            activar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyIntentService.startActionCALL(getContext(),contacto);
+                }
+            });
 
             placingActions.addView(phView);
         }

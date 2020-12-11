@@ -5,7 +5,7 @@
     <string name="txt3P1">Las cifras en aumento, son parte de nuestra cotidianidad.</string>
     <string name="txt4P1">Con Bloqui la seguridad hará parte de tu telefono.</string>
     <string name="acSelTxt">Selecciona las acciones que quieras realizar al activar Bloqui…</string>
-    <string name="defaultMsg">Hola! Me encuentro en peligro, necesito tu ayuda (Este es un mensaje automatico enviado por Bloqui).</string>
+    <string name="defaultMsg">Hola! Me encuentro en peligro, necesito tu ayuda.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_start">StartActivity</string>
@@ -47,6 +47,8 @@
     <string name="llamada_al_123">Llamada al 123</string>
     <string name="guardar">GUARDAR</string>
     <string name="cargar">CARGAR</string>
+    <string name="whatsapp_suffix">Mensaje automatico enviado por Bloqui.</string>
+    <string name="usuario_de_telegram">USUARIO DE TELEGRAM</string>
 
 
 </resources>
